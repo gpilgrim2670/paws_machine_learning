@@ -93,7 +93,7 @@ At this point I started to become suspicious.
 My next step, common in EDA, was to work up some visualizations of the
 data. Plotting `lines_per_sec` vs. `distance` seemed like an obvious
 answer. When looking at productivity data I expect to see fluctuations
-throughout the day. People talk lunch breaks, go to the bathroom, check
+throughout the day. People take lunch breaks, go to the bathroom, check
 Stack Overflow, pet their pets. Some of this should be visible in the
 data.
 
@@ -271,9 +271,9 @@ write.csv(gp_6, 'gp_6.csv', row.names = FALSE)
 ## Result
 
 This was a fun little joke, and an enjoyable puzzle, which I’m glad to
-have won. I’d like to thank DrivenData, the Academy, the entire cast and
-crew, and of course my own pet, Wurlie, who helped a great deal when he
-wasn’t being a huge hindrance…
+have won. I’d like to thank DrivenData, the other competitors, the
+Academy, the entire cast and crew, and of course my own pet, Wurlie, who
+helped a lot when he wasn’t being a huge hindrance…
 
 <img src="leaderboard_winner.PNG" style="display: block; margin: auto;" />
 
@@ -283,4 +283,4 @@ wasn’t being a huge hindrance…
 
 ------------------------------------------------------------------------
 
-I hope you enjoyed this little write up, thanks for reading.
+Thanks for reading! I hope you enjoyed this little write up.
