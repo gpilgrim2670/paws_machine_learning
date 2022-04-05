@@ -1,7 +1,5 @@
-README
+DrvienData Pawsitive Predictive Value: Pets and Productivity Entry
 ================
-
-## DrvienData Pawsitive Predictive Value: Pets and Productivity Entry
 
 On April 1st, 2022 [DrvienData](https://www.drivendata.org/) announced a
 competition called [Pawsitive Predictive Value: Pets and Productivity
