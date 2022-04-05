@@ -106,9 +106,10 @@ train %>%
   theme_bw()
 ```
 
-![](README_files/figure-gfm/plots-1.png)<!-- --> Ah, I see what’s going
-on. April 1st, April Fools Day. Got it. However, just because this
-competition is a joke doesn’t mean it can’t be won.
+![](README_files/figure-gfm/plots-1.png)<!-- -->
+
+Ah, I see what’s going on. April 1st, April Fools Day. Got it. However,
+just because this competition is a joke doesn’t mean it can’t be won.
 
 ## Fitting Test Data
 
@@ -196,9 +197,10 @@ slope %>%
   theme_bw()
 ```
 
-![](README_files/figure-gfm/slopes-1.png)<!-- --> So the `test` data
-fits, but there are some gaps. Looking at the `test` data set showed
-why.
+![](README_files/figure-gfm/slopes-1.png)<!-- -->
+
+So the `test` data fits, but there are some gaps. Looking at the `test`
+data set showed why.
 
 ## Offsets
 
@@ -214,22 +216,9 @@ test %>%
   group_by(distance, pet_name) %>% 
   summarise(n = n()) %>% 
   arrange(desc(n)) %>% 
-  head()
+  head() %>% 
+  flextable_style()
 ```
-
-    ## `summarise()` has grouped output by 'distance'. You can override using the
-    ## `.groups` argument.
-
-    ## # A tibble: 6 x 3
-    ## # Groups:   distance [6]
-    ##   distance pet_name     n
-    ##      <dbl> <chr>    <int>
-    ## 1    0.209 nico        28
-    ## 2    0.249 titus       27
-    ## 3    0.303 poncie      27
-    ## 4    0.230 poncie      26
-    ## 5    0.267 titus       26
-    ## 6    0.447 nico        26
 
 For lots of `pet_name`-`distance` pairs there are many data points.
 Presumably those data points should be spread across a range of
@@ -254,12 +243,13 @@ example %>%
   labs(color = 'id')
 ```
 
-![](README_files/figure-gfm/example-1.png)<!-- --> Even though all the
-predicted positions match the actual positions they don’t match on a
-per-point basis. All the correct positions are occupied, but they’re
-occupied by the wrong data points. There’s no way of determining which
-data point with `distance = 1` corresponds to which value of
-`lines_per_sec`.
+![](README_files/figure-gfm/example-1.png)<!-- -->
+
+Even though all the predicted positions match the actual positions they
+don’t match on a per-point basis. All the correct positions are
+occupied, but they’re occupied by the wrong data points. There’s no way
+of determining which data point with `distance = 1` corresponds to which
+value of `lines_per_sec`.
 
 So while I originally considered adding a small offset to each value of
 `lines_per_sec` I was calculating using my line formulas to fill in the
@@ -284,10 +274,17 @@ write.csv(gp_6, 'gp_6.csv', row.names = FALSE)
 
 ## Result
 
-This was a fun little joke, and an enjoyable puzzle. I’d like to thank
-DrivenData, the Academy, the entire cast and crew, and of course my own
-pet, Wurlie, who helped a great deal when he wasn’t being a huge
-hindrance…
+This was a fun little joke, and an enjoyable puzzle, which I’m glad to
+have won. I’d like to thank DrivenData, the Academy, the entire cast and
+crew, and of course my own pet, Wurlie, who helped a great deal when he
+wasn’t being a huge hindrance…
 
-[Winner]('leaderboard_winner.PNG'){width = 50%}
-[Wurlie]('wurlie.JPG'){width = 50%}
+<img src="leaderboard_winner.PNG" style="display: block; margin: auto;" />
+
+------------------------------------------------------------------------
+
+<img src="wurlie.JPG" width="50%" style="display: block; margin: auto;" />
+
+------------------------------------------------------------------------
+
+I hope you enjoyed this little write up, thanks for reading.

@@ -75,6 +75,7 @@ train %>%
   scale_y_continuous(breaks = seq(0, 1, 0.2)) +
   theme_bw()
 ```
+
 Ah, I see what's going on.  April 1st, April Fools Day.  Got it.  However, just because this competition is a joke doesn't mean it can't be won.
 
 ## Fitting Test Data
@@ -143,11 +144,12 @@ slope %>%
   theme_bw()
 
 ```
+
 So the `test` data fits, but there are some gaps.  Looking at the `test` data set showed why.
 
 ## Offsets
 
-```{r gaps}
+```{r gaps, message=FALSE, warning=FALSE}
 test %>% 
   arrange(distance, pet_name) %>% 
   head() %>% 
@@ -157,7 +159,8 @@ test %>%
   group_by(distance, pet_name) %>% 
   summarise(n = n()) %>% 
   arrange(desc(n)) %>% 
-  head()
+  head() %>% 
+  flextable_style()
 ```
 For lots of `pet_name`-`distance` pairs there are many data points.  Presumably those data points should be spread across a range of `lines_per_sec` values to fill in the gaps in the graph above.  Doing so isn't possible though.  Here's why:
 
@@ -177,6 +180,7 @@ example %>%
   theme_bw() +
   labs(color = 'id')
 ```
+
 Even though all the predicted positions match the actual positions they don't match on a per-point basis.  All the correct positions are occupied, but they're occupied by the wrong data points.  There's no way of determining which data point with `distance = 1` corresponds to which value of `lines_per_sec`.
 
 So while I originally considered adding a small offset to each value of `lines_per_sec` I was calculating using my line formulas to fill in the gaps I decided  against it.  If I put all the `test` data points in the centers of their corresponding `train` data holes I'd at least be sure to place some points correctly.  Using offsets I might end up in the situation illustrated above where none were in the correct spot.
@@ -198,7 +202,20 @@ write.csv(gp_6, 'gp_6.csv', row.names = FALSE)
 
 ## Result
 
-This was a fun little joke, and an enjoyable puzzle.  I'd like to thank DrivenData, the Academy, the entire cast and crew, and of course my own pet, Wurlie, who helped a great deal when he wasn't being a huge hindrance...
+This was a fun little joke, and an enjoyable puzzle, which I'm glad to have won.  I'd like to thank DrivenData, the Academy, the entire cast and crew, and of course my own pet, Wurlie, who helped a great deal when he wasn't being a huge hindrance...
 
-[Winner]('leaderboard_winner.PNG'){width = 50%} [Wurlie]('wurlie.JPG'){width = 50%}
+```{r image_grobs_leaderboard, fig.show = "hold", fig.align = "center", echo = FALSE}
 
+knitr::include_graphics("leaderboard_winner.PNG")
+```
+
+***
+
+```{r image_grobs_wurlie, fig.show = "hold", out.width = "50%", fig.align = "center", echo=FALSE}
+
+knitr::include_graphics("wurlie.JPG")
+```
+
+***
+
+I hope you enjoyed this little write up, thanks for reading.
