@@ -52,8 +52,11 @@ train %>%
             mean_lines = round(mean(lines_per_sec, na.rm = TRUE), 2),
             max_lines = round(max(lines_per_sec, na.rm = TRUE), 2),
             min_lines = round(min(lines_per_sec, na.rm = TRUE), 2)) %>% 
-  flextable_style() %>% 
-  htmltools_value()
+  flextable_style()
+```
+
+```{r train_table, out.width = "80%", fig.align = "center", echo = FALSE}
+knitr::include_graphics("train_table.png")
 ```
 
 These are curious values because they're all between 0.1 and 0.9.  Normalized values are commonly used in data science, and I considered the possibility that DrivenData had provided them instead of raw values.  There are a few issues with that possibility though.
@@ -111,6 +114,7 @@ $$
 $$
 y = mx + b
 $$
+
 The values for `b` (y intercept) I was seeing were `0.4`, `0.39`, `0.41` and `0.39`.  Again I was suspicious.  Maybe all these intercepts are the same.  Hmmm `0.41` ... `41` ... 4-1 ... April 1st.  I played a hunch and set all `b = 0.41`.
 
 The slopes of all four lines clearly aren't the same, but they do follow a similar theme.  Two slopes, those for `nico` and `titus` did come out to about `0.41`.  The other two, for `poncie` and `teddy` were about `0.041`.  Again I went with my hunch and set `m = 0.41` for `nico` and `titus` and `m = 0.041` for `poncie` and `teddy`.
@@ -156,8 +160,11 @@ test %>%
   summarise(n = n()) %>% 
   arrange(desc(n)) %>% 
   head() %>% 
-  flextable_style() %>% 
-  htmltools_value()
+  flextable_style()
+```
+
+```{r test_table, out.width = "30%", fig.align = "center", echo = FALSE}
+knitr::include_graphics("test_table.png")
 ```
 
 For lots of `pet_name`-`distance` pairs there are many data points.  Presumably those data points should be spread across a range of `lines_per_sec` values to fill in the gaps in the graph above.  Doing so isn't possible though.  Here's why:
