@@ -1,6 +1,7 @@
 ---
 title: "README"
 output: github_document
+always_allow_html: true
 ---
 
 ## DrvienData Pawsitive Predictive Value: Pets and Productivity Entry
@@ -51,7 +52,8 @@ train %>%
             mean_lines = round(mean(lines_per_sec, na.rm = TRUE), 2),
             max_lines = round(max(lines_per_sec, na.rm = TRUE), 2),
             min_lines = round(min(lines_per_sec, na.rm = TRUE), 2)) %>% 
-  flextable_style()
+  flextable_style() %>% 
+  htmltools_value()
 ```
 
 These are curious values because they're all between 0.1 and 0.9.  Normalized values are commonly used in data science, and I considered the possibility that DrivenData had provided them instead of raw values.  There are a few issues with that possibility though.
@@ -142,26 +144,22 @@ slope %>%
   scale_x_continuous(breaks = seq(0, 1, 0.2)) +
   scale_y_continuous(breaks = seq(0, 1, 0.2)) +
   theme_bw()
-
 ```
 
 So the `test` data fits, but there are some gaps.  Looking at the `test` data set showed why.
 
 ## Offsets
 
-```{r gaps, message=FALSE, warning=FALSE}
-test %>% 
-  arrange(distance, pet_name) %>% 
-  head() %>% 
-  flextable_style()
-
+```{r gaps_2, message=FALSE, warning=FALSE}
 test %>% 
   group_by(distance, pet_name) %>% 
   summarise(n = n()) %>% 
   arrange(desc(n)) %>% 
   head() %>% 
-  flextable_style()
+  flextable_style() %>% 
+  htmltools_value()
 ```
+
 For lots of `pet_name`-`distance` pairs there are many data points.  Presumably those data points should be spread across a range of `lines_per_sec` values to fill in the gaps in the graph above.  Doing so isn't possible though.  Here's why:
 
 Assume a set of 3 data points:
