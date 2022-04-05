@@ -20,7 +20,8 @@ flextable_style <- function(x) {
   x %>%
     flextable() %>%
     bold(part = "header") %>% # bolds header
-    bg(bg = "#D3D3D3", part = "header")  # puts gray background behind the header row
+    bg(bg = "#D3D3D3", part = "header") %>% # puts gray background behind the header row
+    bg(bg = 'white', part = 'body')
 }
 ```
 
