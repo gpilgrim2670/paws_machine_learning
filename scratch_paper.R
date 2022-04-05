@@ -5,7 +5,6 @@ library(readr)
 train <- read_csv('train.csv')
 test <- read_csv('test.csv')
 
-
 train %>%
   group_by(pet_name) %>%
   summarise(avg = mean(distance),
@@ -187,11 +186,11 @@ test_complete %>%
 slope <- train %>%
   bind_rows(test, .id = 'set') %>%
   replace(is.na(.), 0.5) %>%
-  mutate(lines_per_sec = case_when(pet_name == 'nico' & set == '2' ~ (distance*0.415) + 0.41,
+  mutate(lines_per_sec = case_when(pet_name == 'nico' & set == '2' ~ (distance*0.41) + 0.41,
                                    TRUE ~ lines_per_sec)) %>%
-  mutate(lines_per_sec = case_when(pet_name == 'poncie' & set == '2' ~ (distance*-0.037) + 0.41,
+  mutate(lines_per_sec = case_when(pet_name == 'poncie' & set == '2' ~ (distance*-0.041) + 0.41,
                                    TRUE ~ lines_per_sec)) %>%
-  mutate(lines_per_sec = case_when(pet_name == 'teddy' & set == '2' ~ (distance*0.044) + 0.41,
+  mutate(lines_per_sec = case_when(pet_name == 'teddy' & set == '2' ~ (distance*0.041) + 0.41,
                                    TRUE ~ lines_per_sec)) %>%
   mutate(lines_per_sec = case_when(pet_name == 'titus' & set == '2' ~ (distance*0.41) + 0.41,
                                    TRUE ~ lines_per_sec))
@@ -203,6 +202,8 @@ slope %>%
   scale_x_continuous(breaks = seq(0, 1, 0.1)) +
   scale_y_continuous(breaks = seq(0, 1, 0.1)) +
   theme_bw()
+
+submission_format <- read_csv("submission_format.csv")
 
 gp_3 <- slope %>%
   filter(set == '2') %>%
