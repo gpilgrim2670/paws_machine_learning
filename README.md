@@ -6,7 +6,7 @@ competition called [Pawsitive Predictive Value: Pets and Productivity
 Entry](https://www.drivendata.org/competitions/95/pawsitive-predictive-value/page/477/).
 Briefly, the competition was described as an effort to predict
 productivity, in lines of code per second, based on physical proximity
-to a pet (in meters).
+to a pet, in meters.
 
 What follows is my winning entry into this competition.
 
